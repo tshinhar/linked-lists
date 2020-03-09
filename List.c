@@ -1,14 +1,20 @@
 #include <stdlib.h>
-
-typedef struct node {
-	int data;
-	struct node *next
-}Node;
+#include <stdio.h>
+#include "List.h"
 
 Node* create_new_node(int value) {
 	Node* new_node = (Node*)malloc(sizeof(Node));
 	new_node->data = value;
 	new_node->next = NULL;
+	return new_node;
+}
+
+void free_list_memory(Node* head) {
+	while (head != NULL) {
+		Node* next_node = head->next;
+		free(head);
+		head = next_node;
+	}
 }
 
 Node* add_to_list_start(Node* head, Node* new_node) {
@@ -58,8 +64,11 @@ void print_node_index(Node* head, int value_target) {
 }
 
 Node* delete_by_index(Node* head, int index) {
-	if (index == 0)
-		return head->next;
+	if (index == 0) {
+		Node* new_head = head->next;
+		free(head);
+		return new_head;
+	}
 	Node *current_node = head, * previous_node=current_node;
 	for (int i = 0; i < index; i++)
 	{
@@ -73,4 +82,14 @@ Node* delete_by_index(Node* head, int index) {
 	previous_node->next = current_node->next;
 	free(current_node);
 	return head;
+}
+
+void print_list(Node* head) {
+	Node* current_node = head;
+	printf("[");
+	while (current_node->next != NULL) {
+		printf("%d, ", current_node->data);
+		current_node = current_node->next;
+	}
+	printf("%d]", current_node->data);
 }
