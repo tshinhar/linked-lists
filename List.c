@@ -56,3 +56,21 @@ void print_node_index(Node* head, int value_target) {
 	}
 	printf("%d", index);
 }
+
+Node* delete_by_index(Node* head, int index) {
+	if (index == 0)
+		return head->next;
+	Node *current_node = head, * previous_node=current_node;
+	for (int i = 0; i < index; i++)
+	{
+		if (current_node == NULL) {
+			printf("the given index is too large");
+			/// exit the program
+		}
+		previous_node = current_node;
+		current_node = current_node->next;
+	}
+	previous_node->next = current_node->next;
+	free(current_node);
+	return head;
+}
