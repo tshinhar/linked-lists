@@ -1,24 +1,30 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "List.h"
+#include "input_prossesing.h"
+
+
+
+#define MAX_LINE_LENGTH	100
 
 int main() {
-	Node* head = NULL;
-	for (int i = 1; i < 4; i++)
-	{
-		Node* new_node = create_new_node(i);
-		head = add_to_list_end(head,new_node);
+	char user_input[MAX_LINE_LENGTH];
+	scanf("%s", user_input);
+	for (int i = 0; i < strlen(user_input); i++) {
+		user_input[i] = tolower(user_input[i]);
 	}
-	print_list(head);
-	Node* help_node = create_new_node(0);
-	head = add_to_list_start(head, help_node);
-	print_list(head);
-	print_node_index(head, 3);
-	head = delete_by_index(head, 3);
-	print_list(head);
-	help_node = create_new_node(3);
-	head = add_after_specific_node(head, 2, help_node);
-	print_list(head);
-	return 0;
+	int exit_flag = 0;
+	Node* head = NULL;
+	while (exit_flag != 1) {
+		exit_flag = prosses_input(user_input, head);
+		scanf("%s", user_input);
+		for (int i = 0; i < strlen(user_input); i++) {
+			user_input[i] = tolower(user_input[i]);
+		}
+	}
 }
+#endif
