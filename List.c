@@ -17,29 +17,32 @@ void free_list_memory(Node* head) {
 	}
 }
 
-Node* add_to_list_start(Node* head, Node* new_node) {
+Node* add_to_list_start(Node* head, int value) {
+	Node* new_node = create_new_node(value);
 	new_node->next = head;
 	return new_node;
 }
 
-Node* add_to_list_end(Node* head, Node* new_node) {
+void add_to_list_end(Node* head, int value) {
+	Node* new_node = create_new_node(value);
 	if (head == NULL)
-		return new_node;
+		return;
 	Node* current_node = head;
 	while (current_node->next != NULL)
 	{
 		current_node = current_node->next;
 	}
 	current_node->next = new_node;
-	return head;
 }
 
-Node* add_after_specific_node(Node* head, int value_target, Node* new_node) {
+Node* add_after_specific_node(Node* head, int after_value, int new_value) {
+	Node* new_node = create_new_node(new_value);
 	Node* current_node = head;
-	while (current_node->data != value_target) {
-		if (current_node == NULL) {
+	while (current_node->data != after_value) {
+		if (current_node->next == NULL) {
 			printf("Error - the taarget node is not in the list");
-			/// exit the program
+			free_list_memory(head);
+			return NULL;
 		}
 		current_node = current_node->next;
 	}
@@ -69,7 +72,7 @@ Node* delete_by_index(Node* head, int index) {
 		free(head);
 		return new_head;
 	}
-	Node *current_node = head, * previous_node=current_node;
+	Node* current_node = head, * previous_node = current_node;
 	for (int i = 0; i < index; i++)
 	{
 		if (current_node == NULL) {
@@ -91,5 +94,5 @@ void print_list(Node* head) {
 		printf("%d, ", current_node->data);
 		current_node = current_node->next;
 	}
-	printf("%d]", current_node->data);
+	printf("%d]\n", current_node->data);
 }
