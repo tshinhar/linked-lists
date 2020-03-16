@@ -68,6 +68,10 @@ void print_node_index(Node* head, int value_target) {
 }
 
 Node* delete_by_index(Node* head, int index) {
+	if (head == NULL) {
+		printf("Error - can't remove a node from an empty list");
+		exit(0);
+	}
 	if (index == 0) {
 		Node* new_head = head->next;
 		free(head);
@@ -77,9 +81,9 @@ Node* delete_by_index(Node* head, int index) {
 	for (int i = 0; i < index; i++)
 	{
 		if (current_node == NULL) {
-			printf("the given index is too large");
+			printf("Error - the given index is too large");
 			free_list_memory(head);
-			return NULL;
+			exit(0);
 		}
 		previous_node = current_node;
 		current_node = current_node->next;
