@@ -28,7 +28,7 @@ int prosses_input(char* user_input, Node** head_pointer) {
 		return 0;
 	}
 	if (strcmp(command, "add_after") == 0) {
-		head = add_after_specific_node(head, atoi(second_node_value), atoi(first_node_value));
+		*head_pointer = add_after_specific_node(head, atoi(second_node_value), atoi(first_node_value));
 		if (head == NULL)
 			return 1;
 		return 0;
@@ -38,7 +38,7 @@ int prosses_input(char* user_input, Node** head_pointer) {
 		return 0;
 	}
 	if (strcmp(command, "del") == 0) {
-		head = delete_by_index(head, atoi(first_node_value));
+		*head_pointer = delete_by_index(head, atoi(first_node_value));
 		if (head == NULL)
 			return 1;
 		return 0;
