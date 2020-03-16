@@ -12,7 +12,7 @@ void free_list_memory(Node* head);
 
 Node* add_to_list_start(Node* head, int value);
 
-void add_to_list_end(Node* head, int value);
+Node* add_to_list_end(Node* head, int value);
 
 Node* add_after_specific_node(Node* head, int after_value, int new_value);
 

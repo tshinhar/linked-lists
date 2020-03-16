@@ -23,16 +23,17 @@ Node* add_to_list_start(Node* head, int value) {
 	return new_node;
 }
 
-void add_to_list_end(Node* head, int value) {
+Node* add_to_list_end(Node* head, int value) {
 	Node* new_node = create_new_node(value);
 	if (head == NULL)
-		return;
+		return new_node;
 	Node* current_node = head;
 	while (current_node->next != NULL)
 	{
 		current_node = current_node->next;
 	}
 	current_node->next = new_node;
+	return head;
 }
 
 Node* add_after_specific_node(Node* head, int after_value, int new_value) {
@@ -40,7 +41,7 @@ Node* add_after_specific_node(Node* head, int after_value, int new_value) {
 	Node* current_node = head;
 	while (current_node->data != after_value) {
 		if (current_node->next == NULL) {
-			printf("Error - the taarget node is not in the list");
+			printf("Error - the target node is not in the list");
 			free_list_memory(head);
 			return NULL;
 		}
@@ -55,15 +56,15 @@ Node* add_after_specific_node(Node* head, int after_value, int new_value) {
 void print_node_index(Node* head, int value_target) {
 	Node* current_node = head;
 	int index = 0;
-	while (current_node->data != value_target) {
-		if (current_node == NULL) {
-			printf("%d", -1);
-			break;
+	while (current_node != NULL) {
+		if (current_node->data == value_target) {
+			printf("%d\n", index);
+			return;
 		}
 		current_node = current_node->next;
 		index++;
 	}
-	printf("%d", index);
+	printf("%d\n", -1);
 }
 
 Node* delete_by_index(Node* head, int index) {
@@ -77,7 +78,8 @@ Node* delete_by_index(Node* head, int index) {
 	{
 		if (current_node == NULL) {
 			printf("the given index is too large");
-			/// exit the program
+			free_list_memory(head);
+			return NULL;
 		}
 		previous_node = current_node;
 		current_node = current_node->next;
@@ -88,6 +90,10 @@ Node* delete_by_index(Node* head, int index) {
 }
 
 void print_list(Node* head) {
+	if (head == NULL) {
+		printf("[]\n");
+		return;
+	}
 	Node* current_node = head;
 	printf("[");
 	while (current_node->next != NULL) {
