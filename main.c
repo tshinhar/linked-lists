@@ -1,5 +1,3 @@
-#ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -18,5 +16,5 @@ int main() {
 		fgets(user_input, MAX_LINE_LENGTH, stdin);
 		exit_flag = prosses_input(user_input, &head);
 	}
+	return 0;
 }
-#endif

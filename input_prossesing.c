@@ -1,5 +1,3 @@
-#ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
 #include "List.h"
 
 #include <stdlib.h>
@@ -8,7 +6,8 @@
 
 
 void str_to_lower(char* str) {
-	for (int i = 0; i < strlen(str); i++) {
+	int i = 0;
+	for (; i < (int)strlen(str); i++) {
 		str[i] = tolower(str[i]);
 	}
 }
@@ -29,8 +28,6 @@ int prosses_input(char* user_input, Node** head_pointer) {
 	}
 	if (strcmp(command, "add_after") == 0) {
 		*head_pointer = add_after_specific_node(head, atoi(second_node_value), atoi(first_node_value));
-		if (head == NULL)
-			return 1;
 		return 0;
 	}
 	if (strcmp(command, "index") == 0) {
@@ -39,8 +36,6 @@ int prosses_input(char* user_input, Node** head_pointer) {
 	}
 	if (strcmp(command, "del") == 0) {
 		*head_pointer = delete_by_index(head, atoi(first_node_value));
-		if (head == NULL)
-			return 1;
 		return 0;
 	}
 	if (strcmp(command, "print") == 0) {
@@ -52,4 +47,3 @@ int prosses_input(char* user_input, Node** head_pointer) {
 	}
 	return 0;
 }
-#endif
