@@ -6,8 +6,6 @@ typedef struct node {
 	struct node* next;
 }Node;
 
-Node* create_new_node(int value);
-
 void free_list_memory(Node* head);
 
 Node* add_to_list_start(Node* head, int value);
