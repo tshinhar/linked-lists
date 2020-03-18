@@ -16,5 +16,6 @@ int main() {
 		fgets(user_input, MAX_LINE_LENGTH, stdin);
 		exit_flag = prosses_input(user_input, &head);
 	}
+	free_list_memory(head);
 	return 0;
 }
