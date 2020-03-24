@@ -37,8 +37,11 @@ Node* add_to_list_end(Node* head, int value) {
 }
 
 Node* add_after_specific_node(Node* head, int after_value, int new_value) {
-	Node* new_node = create_new_node(new_value);
 	Node* current_node = head;
+	if (head == NULL) {
+		printf("Error - the target node is not in the list\n");
+		exit(1);
+	}
 	while (current_node->data != after_value) {
 		if (current_node->next == NULL) {
 			printf("Error - the target node is not in the list\n");
@@ -47,13 +50,14 @@ Node* add_after_specific_node(Node* head, int after_value, int new_value) {
 		}
 		current_node = current_node->next;
 	}
+	Node* new_node = create_new_node(new_value);
 	Node* helper_node = current_node->next;
 	current_node->next = new_node;
 	new_node->next = helper_node;
 	return head;
 }
 
-void print_node_index(Node* head, int value_target) {
+void print_node_at_index(Node* head, int value_target) {
 	Node* current_node = head;
 	int index = 0;
 	while (current_node != NULL) {

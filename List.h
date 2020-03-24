@@ -14,7 +14,7 @@ Node* add_to_list_end(Node* head, int value);
 
 Node* add_after_specific_node(Node* head, int after_value, int new_value);
 
-void print_node_index(Node* head, int value_target);
+void print_node_at_index(Node* head, int value_target);
 
 Node* delete_by_index(Node* head, int index);
 

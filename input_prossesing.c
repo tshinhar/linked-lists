@@ -31,7 +31,7 @@ int prosses_input(char* user_input, Node** head_pointer) {
 		return 0;
 	}
 	if (strcmp(command, "index") == 0) {
-		print_node_index(head, atoi(first_node_value));
+		print_node_at_index(head, atoi(first_node_value));
 		return 0;
 	}
 	if (strcmp(command, "del") == 0) {
